@@ -1,0 +1,12 @@
+basso{
+    color: red;
+}
+.provaClasse:hover{
+    color: aqua;
+}
+#box{
+    display: none;
+}
+#box:checked + label> basso{
+    color: black;
+}
