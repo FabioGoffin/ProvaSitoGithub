@@ -25,19 +25,11 @@ register.addEventListener('click', function(){
 
     createUserWithEmailAndPassword(auth, email, password)
     .then(function(){
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const day = now.getDate();
-      const month = (now.getMonth() + 1).toString().padStart(2, '0'); 
-      const year = now.getFullYear();
-
-      const formattedDate = `${hours}:${minutes} ${day}/${month}/${year}`;
       let user = auth.currentUser;
       set(ref(db, 'users/' + user.uid), {
         email : email,
         password : password,
-        last_login : formattedDate
+        last_login : getDate()
       });
       alert("done!");
     })
@@ -45,3 +37,31 @@ register.addEventListener('click', function(){
       alert(error.message);
     });
 });
+
+
+const alreadySignout = document.getElementById('alreadySignout');
+const notSignout = document.getElementById('notSignout');
+const registerDiv = document.getElementById('registerDiv');
+const loginDiv = document.getElementById('loginDiv');
+
+
+alreadySignout.addEventListener('click', function(){
+  registerDiv.classList.add('notDisplay');
+  loginDiv.classList.remove('notDisplay');
+});
+
+notSignout.addEventListener('click', function(){
+  registerDiv.classList.remove('notDisplay');
+  loginDiv.classList.add('notDisplay');
+});
+
+
+function getDate(){
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+  const month = (now.getMonth() + 1).toString().padStart(2, '0'); 
+  const year = now.getFullYear();
+  return `${hours}:${minutes} ${day}/${month}/${year}`;
+}

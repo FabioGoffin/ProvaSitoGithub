@@ -1,3 +1,7 @@
+body {
+	font-family: "Brush Script MT", cursive;
+  }
+
 div {
 	max-width: 500px;
 	margin: 50px auto;
@@ -29,7 +33,8 @@ input[type="password"] {
 	font-size: 16px;
 }
 
-input[type="submit"] {
+button#login,
+button#register {
 	display: block;
 	width: 100%;
 	padding: 10px;
@@ -43,4 +48,8 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
 	background-color: #3e8e41;
+}
+
+.notDisplay {
+	display: none;
 }
