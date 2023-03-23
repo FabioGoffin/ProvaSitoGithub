@@ -2,8 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebas
 import { createUserWithEmailAndPassword, getAuth} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { ref, getDatabase, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
+require('dotenv').config()
 const firebaseConfig = {
-  apiKey: "AIzaSyCcIwVONO6_7Who1aiaIg6MAYTORo-jCOA",
+  apiKey: process.env.API_KEY,
   authDomain: "provasitodb-5851f.firebaseapp.com",
   databaseURL: "https://provasitodb-5851f-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "provasitodb-5851f",
