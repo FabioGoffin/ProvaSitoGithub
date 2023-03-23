@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: "1:129381431270:web:f6f851f64f5fb09c558827"
 };
 
-// Initialize Firebase
+// Initialize Firebase prova
 const app = initializeApp(firebaseConfig);
 var auth = getAuth(app);
 const db = getDatabase();
