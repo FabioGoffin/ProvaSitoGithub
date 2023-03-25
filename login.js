@@ -1,9 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-import { createUserWithEmailAndPassword, getAuth} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
-import { ref, getDatabase, set } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import { ref, getDatabase, set, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCcIwVONO6_7Who1aiaIg6MAYTORo',
+  apiKey: "AIzaSyCcIwVONO6_7Who1aiaIg6MAYTORo-jCOA",
   authDomain: "provasitodb-5851f.firebaseapp.com",
   databaseURL: "https://provasitodb-5851f-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "provasitodb-5851f",
@@ -20,8 +20,8 @@ const db = getDatabase();
 
 const register = document.getElementById("register");
 register.addEventListener('click', function(){
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+    let email = document.getElementById("emailR").value;
+    let password = document.getElementById("passwordR").value;
 
     createUserWithEmailAndPassword(auth, email, password)
     .then(function(){
@@ -31,13 +31,29 @@ register.addEventListener('click', function(){
         password : password,
         last_login : getDate()
       });
-      alert("done!");
+      //alert("done!");
+      window.location.href="index.html";
     })
     .catch(function(error){
       alert(error.message);
     });
 });
 
+const login = document.getElementById("login");
+login.addEventListener('click', function(){
+  let email = document.getElementById("emailL").value;
+  let password = document.getElementById("passwordL").value;
+  signInWithEmailAndPassword(auth, email, password)
+  .then(function(){
+    let user = auth.currentUser;
+    onValue(ref(db, 'users/' + user.uid), (snapshot) => {
+      const data = snapshot.val();
+      
+    });
+  }).catch((error) => {
+    alert(error.message);
+  });
+});
 
 const alreadySignout = document.getElementById('alreadySignout');
 const notSignout = document.getElementById('notSignout');
